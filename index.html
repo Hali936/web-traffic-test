@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Traffic Test</title>
+    <script>
+        async function updateVisitorCount() {
+            let count = localStorage.getItem('visitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('visitorCount', count);
+            document.getElementById("visitor-count").textContent = count;
+        }
+        document.addEventListener("DOMContentLoaded", updateVisitorCount);
+    </script>
 </head>
 <body>
     <h1>Web Traffic Experiment</h1>
     <p>Diese Seite dient einem Experiment zur Messung von Zugriffen.</p>
     <p>Falls du das hier sehen kannst, funktioniert dein GitHub Pages Deployment! 🎉</p>
+    <p>Aktuelle Besucherzahl: <span id="visitor-count">Lädt...</span></p>
 </body>
 </html>
