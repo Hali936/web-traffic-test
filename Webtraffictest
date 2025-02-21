@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Traffic Experiment</title>
+    <script defer src="https://plausible.io/js/script.js" data-domain="example-test-page.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Traffic Experiment</h1>
+    <p>Diese Seite dient einem Experiment zur Messung von Zugriffen aus verschiedenen Quellen.</p>
+    <p><strong>Ziel:</strong> Wir testen, ob und wie Websuchen und automatisierte KI-Abfragen messbare Spuren hinterlassen.</p>
+    <p>Aktuelle Besucherzahl: <span id="visitor-count">Lädt...</span></p>
+    
+    <script>
+        async function updateVisitorCount() {
+            try {
+                let response = await fetch('https://plausible.io/api/stats/site?domain=example-test-page.com');
+                let data = await response.json();
+                document.getElementById("visitor-count").textContent = data.visits || "Keine Daten";
+            } catch (error) {
+                document.getElementById("visitor-count").textContent = "Fehler beim Laden";
+            }
+        }
+        updateVisitorCount();
+    </script>
+</body>
+</html>
